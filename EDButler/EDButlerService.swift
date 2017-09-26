@@ -19,7 +19,7 @@ open class EDButlerRequest:NSObject, URLSessionDelegate, URLSessionDataDelegate 
 //		self.session = URLSession(configuration: sessionConfig, delegate: self, delegateQueue: nil)
 	}
 
-	public func run<T>(_ completion: @escaping ((EDButlerResponse<T>) -> Void)) {
+	public func run<T>(completion: @escaping ((EDButlerResponse<T>) -> Void)) {
 		sendRequest { (data, response, error) in
 			let object = EDButlerResponse<T>(data: data, response: response, error: error)
 			completion(object)
