@@ -163,20 +163,23 @@ open class EDButlerRoute {
 		self.params = params
 	}
 
-	public init(method:EDButlerRouteMethod, path:String, asJSON: Bool?, params:[AnyHashable:Any]?) throws {
+	public init(method:EDButlerRouteMethod, path:String, asJSON: Bool) throws {
 		guard let host = EDButlerRoute.defaultHost else {
 			throw EDButlerRouteError.emptyDefaultHost
 		}
 		self.host = host
 		self.method = method
 		self.path = path
-		if let val = asJSON {
-			self.asJSON = val
+		self.asJSON = asJSON
+	}
+
+	public init(method:EDButlerRouteMethod, path:String) throws {
+		guard let host = EDButlerRoute.defaultHost else {
+			throw EDButlerRouteError.emptyDefaultHost
 		}
-		else {
-			self.asJSON = false
-		}
-		self.params = params
+		self.host = host
+		self.method = method
+		self.path = path
 	}
 
     private func escapeValue(string: Any) -> String {
