@@ -8,11 +8,13 @@
 
 import UIKit
 
-open class EDButlerResponse<T> where T:Codable{
+open class EDButlerResponse<T> where T:Codable {
 
 	open var response: URLResponse?
 	open var error: Error?
+
 	fileprivate var data: Data?
+	
 
 	init(data:Data?, response:URLResponse?, error:Error? ) {
 		self.data = data
@@ -35,7 +37,6 @@ open class EDButlerResponse<T> where T:Codable{
 				return try? decoder.decode(T.self, from: data)
 			}
 			return nil
-
 		}
 	}
 

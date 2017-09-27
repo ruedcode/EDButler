@@ -23,8 +23,10 @@ open class EDButlerRequest:NSObject {
 	public var expectedContentLength: Int64 = 0
 	public var downloadedContentLength: Int = 0
 	public var downloadedData: Data?
+
 	public var didChangedProgress : (()->Void)?
 	public var willPerform : ((URLRequest)->URLRequest)?
+	public var prepareResponseData : ((Data?)->Data?)?
 
 	weak fileprivate var service: EDButlerService?
 
@@ -35,7 +37,11 @@ open class EDButlerRequest:NSObject {
 	}
 
 	public func run<T>(type: T.Type, completion: @escaping ((EDButlerResponse<T>) -> Void)) {
-		service?.sendRequest(self, completion: { (data, response, error) in
+		service?.sendRequest(self, completion: {[weak self] (data, response, error) in
+			var data = data
+			if let action = self?.prepareResponseData {
+				data = action(data)
+			}
 			let object = EDButlerResponse<T>(data: data, response: response, error: error)
 			completion(object)
 		})
@@ -72,6 +78,8 @@ open class EDButlerService: NSObject, URLSessionTaskDelegate, URLSessionDelegate
 	open static let `default` = EDButlerService()
 
 	open static var willPerform : ((URLRequest)->URLRequest)?
+	open static var willParse : ((Data?)->Data?)?
+	open static var prepareResponseData : ((Data?)->Data?)?
 
 	fileprivate var sessionConfiguration: URLSessionConfiguration
 	fileprivate var runnedDataTasks: [URLSessionDataTask:EDButlerRequest] = [:]
@@ -122,7 +130,6 @@ open class EDButlerService: NSObject, URLSessionTaskDelegate, URLSessionDelegate
 			DispatchQueue.main.async {
 				UIApplication.shared.isNetworkActivityIndicatorVisible = false
 				self?.parseResponse(data: data, response: response, error: error, completion: completion)
-
 			}
 
 		}
@@ -136,6 +143,10 @@ open class EDButlerService: NSObject, URLSessionTaskDelegate, URLSessionDelegate
 			if httpResponse.statusCode != 200 {
 				error = EDButlerRequest.error(for: httpResponse.statusCode)
 			}
+		}
+		var data = data
+		if let action = EDButlerService.prepareResponseData {
+			data = action(data)
 		}
 		completion(data, response, error)
 	}
