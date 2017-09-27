@@ -26,7 +26,7 @@ open class EDButlerRequest:NSObject {
 
 	public var didChangedProgress : (()->Void)?
 	public var willPerform : ((URLRequest)->URLRequest)?
-	public var prepareResponseData : ((Data?)->Data?)?
+	public var prepareResponseData : ((_ data:Data?)->Data?)?
 
 	weak fileprivate var service: EDButlerService?
 
@@ -78,7 +78,7 @@ open class EDButlerService: NSObject, URLSessionTaskDelegate, URLSessionDelegate
 	open static let `default` = EDButlerService()
 
 	open static var willPerform : ((URLRequest)->URLRequest)?
-	open static var willParse : ((Data?)->Data?)?
+	open static var willParse : ((_ data:Data?)->Data?)?
 	open static var prepareResponseData : ((Data?)->Data?)?
 
 	fileprivate var sessionConfiguration: URLSessionConfiguration

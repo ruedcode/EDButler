@@ -26,7 +26,6 @@ open class EDButlerResponse<T> where T:Codable {
 		get {
 			if let data = data {
 				do {
-					let dataString = String(bytes: data, encoding: .utf8)
 					let json = try JSONSerialization.jsonObject(with: data, options: [JSONSerialization.ReadingOptions.mutableContainers])
 					if let val = json as? T {
 						return val
