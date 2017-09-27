@@ -23,6 +23,7 @@ open class EDButlerResponse<T> where T:Codable{
 	open var value: T? {
 		get {
 			if let data = data {
+				print("data length \(data.count)")
 				let decoder = JSONDecoder()
 				return try? decoder.decode(T.self, from: data)
 			}
