@@ -15,6 +15,7 @@ open class EDButlerRequest:NSObject {
 		case forbidden
 		case unauthorized
 		case internalServerError
+		case notFound
 		case unknown
 	}
 
@@ -49,6 +50,7 @@ open class EDButlerRequest:NSObject {
 			400: EDButlerRequestError.badRequest,
 			401: EDButlerRequestError.unauthorized,
 			403: EDButlerRequestError.forbidden,
+			404: EDButlerRequestError.notFound,
 			500: EDButlerRequestError.internalServerError,
 		]
 		var res = EDButlerRequestError.unknown
