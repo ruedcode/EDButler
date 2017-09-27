@@ -114,7 +114,7 @@ open class EDButlerRoute {
 				var stringParameters : [String] = []
 				for key in keys {
 					let value = params![key] ?? ""
-					var stringValue : String!
+					var stringValue : String = ""
 					if value is String {
 						if let val = value as? String {
 							stringValue = escapeValue(string: val)

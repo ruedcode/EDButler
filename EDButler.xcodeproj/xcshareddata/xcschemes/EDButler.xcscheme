@@ -29,7 +29,26 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A1C42DFC1F7B835200B19D0D"
+               BuildableName = "EDButlerTests.xctest"
+               BlueprintName = "EDButlerTests"
+               ReferencedContainer = "container:EDButler.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "A18748951F7A617300884107"
+            BuildableName = "EDButler.framework"
+            BlueprintName = "EDButler"
+            ReferencedContainer = "container:EDButler.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
