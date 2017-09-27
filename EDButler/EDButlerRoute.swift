@@ -98,6 +98,7 @@ open class EDButlerRoute {
 			if( method == .get || method == .patch  ) {
 				if( urlEncodedParameters.characters.count > 0 ) {
 					let prefix = baseURL.query != nil ? "&" : "?"
+					print("\( baseURL.absoluteString) \(prefix) \(urlEncodedParameters)")
 					baseURL = URL(string: baseURL.absoluteString + prefix + urlEncodedParameters)!
 				}
 			}
@@ -156,6 +157,17 @@ open class EDButlerRoute {
 	}
 
 	public init(host:String, method:EDButlerRouteMethod, path:String, asJSON: Bool, params:[AnyHashable:Any]?) {
+		self.host = host
+		self.method = method
+		self.path = path
+		self.asJSON = asJSON
+		self.params = params
+	}
+
+	public init(method:EDButlerRouteMethod, path:String, asJSON: Bool, params:[AnyHashable:Any]?) throws {
+		guard let host = EDButlerRoute.defaultHost else {
+			throw EDButlerRouteError.emptyDefaultHost
+		}
 		self.host = host
 		self.method = method
 		self.path = path
