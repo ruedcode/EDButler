@@ -99,7 +99,6 @@ open class EDButlerRoute {
 				if( urlEncodedParameters.characters.count > 0 ) {
 					let prefix : String = baseURL.query != nil ? "&" : "?"
 					let string = baseURL.absoluteString + prefix + urlEncodedParameters
-					print("url string \(string)")
 					baseURL = URL(string: string)!
 				}
 			}
@@ -123,7 +122,6 @@ open class EDButlerRoute {
 					else {
 						stringValue = escapeValue(string: "\(value)")
 					}
-					print("key \(key) value \(stringValue)")
 					stringParameters.append("\(key)=\(stringValue)")
 				}
 				res = stringParameters.joined(separator: "&")
