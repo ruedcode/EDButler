@@ -93,6 +93,7 @@ open class EDButlerService: NSObject, URLSessionTaskDelegate, URLSessionDelegate
 			completion(data, response, error)
 		}
 		runnedDataTasks[task] = request
+		task.resume()
 	}
 
 	// MARK: - URLSession
