@@ -10,8 +10,8 @@ import UIKit
 
 open class EDButlerResponse<T> where T:Codable{
 
-	var response: URLResponse?
-	var error: Error?
+	open var response: URLResponse?
+	open var error: Error?
 	fileprivate var data: Data?
 
 	init(data:Data?, response:URLResponse?, error:Error? ) {
@@ -20,7 +20,7 @@ open class EDButlerResponse<T> where T:Codable{
 		self.error = error
 	}
 
-	var value: T? {
+	open var value: T? {
 		get {
 			if let data = data {
 				let decoder = JSONDecoder()
