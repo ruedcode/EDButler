@@ -10,6 +10,15 @@ import UIKit
 
 open class EDButlerRequest:NSObject {
 
+	public enum EDButlerRequestError: Error {
+		case badRequest
+		case forbidden
+		case unauthorized
+		case internalServerError
+		case notFound
+		case unknown
+	}
+
 	public var route : EDButlerRoute
 	public var expectedContentLength: Int64 = 0
 	public var downloadedContentLength: Int = 0
@@ -34,6 +43,27 @@ open class EDButlerRequest:NSObject {
 
 	public func run() {
 		service?.sendRequest(self, completion: { (_, _, _) in})
+	}
+
+	public func cancel() {
+		if let service = service {
+			service.cancel(self)
+		}
+	}
+
+	static fileprivate func error(for statusCode: Int) -> Error {
+		let errors = [
+			400: EDButlerRequestError.badRequest,
+			401: EDButlerRequestError.unauthorized,
+			403: EDButlerRequestError.forbidden,
+			404: EDButlerRequestError.notFound,
+			500: EDButlerRequestError.internalServerError,
+		]
+		var res = EDButlerRequestError.unknown
+		if let type = errors[statusCode] {
+			res = type
+		}
+		return res
 	}
 }
 
@@ -88,11 +118,26 @@ open class EDButlerService: NSObject, URLSessionTaskDelegate, URLSessionDelegate
 			urlRequest = localModification(urlRequest)
 		}
 		UIApplication.shared.isNetworkActivityIndicatorVisible = true
-		let task = session.dataTask(with: urlRequest) { (data, response, error) in
-			UIApplication.shared.isNetworkActivityIndicatorVisible = false
-			completion(data, response, error)
+		let task = session.dataTask(with: urlRequest) {[weak self] (data, response, error) in
+			DispatchQueue.main.async {
+				UIApplication.shared.isNetworkActivityIndicatorVisible = false
+				self?.parseResponse(data: data, response: response, error: error, completion: completion)
+
+			}
+
 		}
 		runnedDataTasks[task] = request
+		task.resume()
+	}
+
+	private func parseResponse(data: Data?, response:URLResponse?, error: Error?, completion: @escaping ((Data?, URLResponse?, Error?)->Void)) {
+		var error = error
+		if error == nil, let httpResponse = response as? HTTPURLResponse {
+			if httpResponse.statusCode != 200 {
+				error = EDButlerRequest.error(for: httpResponse.statusCode)
+			}
+		}
+		completion(data, response, error)
 	}
 
 	// MARK: - URLSession

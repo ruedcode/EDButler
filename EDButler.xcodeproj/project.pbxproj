@@ -11,7 +11,19 @@
 		A18748A21F7A61C100884107 /* EDButlerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18748A11F7A61C100884107 /* EDButlerService.swift */; };
 		A18748A41F7A629A00884107 /* EDButlerRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18748A31F7A629A00884107 /* EDButlerRoute.swift */; };
 		A18748A61F7A738600884107 /* EDButlerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18748A51F7A738600884107 /* EDButlerResponse.swift */; };
+		A1C42E001F7B835200B19D0D /* EDButlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C42DFF1F7B835200B19D0D /* EDButlerTests.swift */; };
+		A1C42E021F7B835200B19D0D /* EDButler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A18748961F7A617300884107 /* EDButler.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A1C42E031F7B835200B19D0D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A187488D1F7A617300884107 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A18748951F7A617300884107;
+			remoteInfo = EDButler;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		A18748961F7A617300884107 /* EDButler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EDButler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -20,6 +32,9 @@
 		A18748A11F7A61C100884107 /* EDButlerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EDButlerService.swift; sourceTree = "<group>"; };
 		A18748A31F7A629A00884107 /* EDButlerRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EDButlerRoute.swift; sourceTree = "<group>"; };
 		A18748A51F7A738600884107 /* EDButlerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EDButlerResponse.swift; sourceTree = "<group>"; };
+		A1C42DFD1F7B835200B19D0D /* EDButlerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EDButlerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1C42DFF1F7B835200B19D0D /* EDButlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EDButlerTests.swift; sourceTree = "<group>"; };
+		A1C42E011F7B835200B19D0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,6 +45,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A1C42DFA1F7B835200B19D0D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1C42E021F7B835200B19D0D /* EDButler.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -37,6 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				A18748981F7A617300884107 /* EDButler */,
+				A1C42DFE1F7B835200B19D0D /* EDButlerTests */,
 				A18748971F7A617300884107 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -45,6 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				A18748961F7A617300884107 /* EDButler.framework */,
+				A1C42DFD1F7B835200B19D0D /* EDButlerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -59,6 +84,15 @@
 				A18748A51F7A738600884107 /* EDButlerResponse.swift */,
 			);
 			path = EDButler;
+			sourceTree = "<group>";
+		};
+		A1C42DFE1F7B835200B19D0D /* EDButlerTests */ = {
+			isa = PBXGroup;
+			children = (
+				A1C42DFF1F7B835200B19D0D /* EDButlerTests.swift */,
+				A1C42E011F7B835200B19D0D /* Info.plist */,
+			);
+			path = EDButlerTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -93,18 +127,41 @@
 			productReference = A18748961F7A617300884107 /* EDButler.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		A1C42DFC1F7B835200B19D0D /* EDButlerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1C42E071F7B835200B19D0D /* Build configuration list for PBXNativeTarget "EDButlerTests" */;
+			buildPhases = (
+				A1C42DF91F7B835200B19D0D /* Sources */,
+				A1C42DFA1F7B835200B19D0D /* Frameworks */,
+				A1C42DFB1F7B835200B19D0D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A1C42E041F7B835200B19D0D /* PBXTargetDependency */,
+			);
+			name = EDButlerTests;
+			productName = EDButlerTests;
+			productReference = A1C42DFD1F7B835200B19D0D /* EDButlerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		A187488D1F7A617300884107 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0900;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = Edcode;
 				TargetAttributes = {
 					A18748951F7A617300884107 = {
 						CreatedOnToolsVersion = 9.0;
 						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
+					};
+					A1C42DFC1F7B835200B19D0D = {
+						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -122,12 +179,20 @@
 			projectRoot = "";
 			targets = (
 				A18748951F7A617300884107 /* EDButler */,
+				A1C42DFC1F7B835200B19D0D /* EDButlerTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		A18748941F7A617300884107 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1C42DFB1F7B835200B19D0D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -147,7 +212,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A1C42DF91F7B835200B19D0D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1C42E001F7B835200B19D0D /* EDButlerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A1C42E041F7B835200B19D0D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A18748951F7A617300884107 /* EDButler */;
+			targetProxy = A1C42E031F7B835200B19D0D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		A187489C1F7A617300884107 /* Debug */ = {
@@ -308,6 +389,34 @@
 			};
 			name = Release;
 		};
+		A1C42E051F7B835200B19D0D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3LLP5BAPPE;
+				INFOPLIST_FILE = EDButlerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ru.edcode.EDButlerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A1C42E061F7B835200B19D0D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3LLP5BAPPE;
+				INFOPLIST_FILE = EDButlerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ru.edcode.EDButlerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -325,6 +434,15 @@
 			buildConfigurations = (
 				A187489F1F7A617300884107 /* Debug */,
 				A18748A01F7A617300884107 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A1C42E071F7B835200B19D0D /* Build configuration list for PBXNativeTarget "EDButlerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1C42E051F7B835200B19D0D /* Debug */,
+				A1C42E061F7B835200B19D0D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

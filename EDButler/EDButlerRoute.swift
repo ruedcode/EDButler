@@ -97,9 +97,9 @@ open class EDButlerRoute {
 			var baseURL = URL(string: host + path)!
 			if( method == .get || method == .patch  ) {
 				if( urlEncodedParameters.characters.count > 0 ) {
-					let prefix = baseURL.query != nil ? "&" : "?"
-					print("\( baseURL.absoluteString) \(prefix) \(urlEncodedParameters)")
-					baseURL = URL(string: baseURL.absoluteString + prefix + urlEncodedParameters)!
+					let prefix : String = baseURL.query != nil ? "&" : "?"
+					let string = baseURL.absoluteString + prefix + urlEncodedParameters
+					baseURL = URL(string: string)!
 				}
 			}
 			return baseURL
@@ -113,7 +113,7 @@ open class EDButlerRoute {
 				var stringParameters : [String] = []
 				for key in keys {
 					let value = params![key] ?? ""
-					var stringValue : String!
+					var stringValue : String = ""
 					if value is String {
 						if let val = value as? String {
 							stringValue = escapeValue(string: val)
