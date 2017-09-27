@@ -89,8 +89,11 @@ open class EDButlerService: NSObject, URLSessionTaskDelegate, URLSessionDelegate
 		}
 		UIApplication.shared.isNetworkActivityIndicatorVisible = true
 		let task = session.dataTask(with: urlRequest) { (data, response, error) in
-			UIApplication.shared.isNetworkActivityIndicatorVisible = false
-			completion(data, response, error)
+			DispatchQueue.main.async {
+				UIApplication.shared.isNetworkActivityIndicatorVisible = false
+				completion(data, response, error)
+			}
+
 		}
 		runnedDataTasks[task] = request
 		task.resume()
