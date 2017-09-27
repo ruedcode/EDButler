@@ -45,6 +45,12 @@ open class EDButlerRequest:NSObject {
 		service?.sendRequest(self, completion: { (_, _, _) in})
 	}
 
+	public func cancel() {
+		if let service = service {
+			service.cancel(self)
+		}
+	}
+
 	static fileprivate func error(for statusCode: Int) -> Error {
 		let errors = [
 			400: EDButlerRequestError.badRequest,
