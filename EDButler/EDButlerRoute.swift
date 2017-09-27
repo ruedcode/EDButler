@@ -123,6 +123,7 @@ open class EDButlerRoute {
 					else {
 						stringValue = escapeValue(string: "\(value)")
 					}
+					print("key \(key) value \(stringValue)")
 					stringParameters.append("\(key)=\(stringValue)")
 				}
 				res = stringParameters.joined(separator: "&")
