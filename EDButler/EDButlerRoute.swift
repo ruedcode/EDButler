@@ -65,33 +65,6 @@ open class EDButlerRoute {
 		}
 	}
 
-	open var request: URLRequest {
-		get {
-			var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: timeout)
-			request.httpMethod = method.rawValue
-
-
-			if asJSON {
-				request.setValue("application/json", forHTTPHeaderField: "Content-type")
-				if method != EDButlerRouteMethod.get, self.params != nil  {
-					let jsonData = try! JSONSerialization.data(withJSONObject: self.params!, options:.prettyPrinted)
-					request.httpBody = jsonData
-				}
-			}
-			//as url Encoded
-			else {
-				if( method != EDButlerRouteMethod.get ) {
-					request.httpBody = httpBody
-				}
-				if hasFiles {
-					 request.setValue("multipart/form-data; boundary=Files", forHTTPHeaderField: "Content-type")
-				}
-			}
-
-			return request
-		}
-	}
-
 	fileprivate var url:URL {
 		get {
 			var baseURL = URL(string: host + path)!
@@ -156,6 +129,33 @@ open class EDButlerRoute {
 		}
 	}
 
+	open var request: URLRequest {
+		get {
+			var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: timeout)
+			request.httpMethod = method.rawValue
+
+
+			if asJSON {
+				request.setValue("application/json", forHTTPHeaderField: "Content-type")
+				if method != EDButlerRouteMethod.get, self.params != nil  {
+					let jsonData = try! JSONSerialization.data(withJSONObject: self.params!, options:.prettyPrinted)
+					request.httpBody = jsonData
+				}
+			}
+				//as url Encoded
+			else {
+				if( method != EDButlerRouteMethod.get ) {
+					request.httpBody = httpBody
+				}
+				if hasFiles {
+					request.setValue("multipart/form-data; boundary=Files", forHTTPHeaderField: "Content-type")
+				}
+			}
+
+			return request
+		}
+	}
+
 	public init(host:String, method:EDButlerRouteMethod, path:String, asJSON: Bool, params:[AnyHashable:Any]?) {
 		self.host = host
 		self.method = method
@@ -192,6 +192,28 @@ open class EDButlerRoute {
 		self.host = host
 		self.method = method
 		self.path = path
+	}
+
+	public func addParameter(forKey key:AnyHashable, value: Any) {
+		var params: [AnyHashable: Any] = [:]
+		if let val = self.params {
+			params = val
+		}
+		params[key] = value
+		self.params = params
+	}
+
+	public func removeParameter(forKey key:AnyHashable) {
+		guard var params = self.params else {
+			return
+		}
+		params.removeValue(forKey: key)
+		if params.keys.count == 0 {
+			self.params = nil
+		}
+		else {
+			self.params = params
+		}
 	}
 
     private func escapeValue(string: Any) -> String {
