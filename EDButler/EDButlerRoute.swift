@@ -194,7 +194,7 @@ open class EDButlerRoute {
 		self.path = path
 	}
 
-	public func addParameter(forKey key:AnyHashable, value: Any) {
+	public func addParameter(_ value: Any, forKey key:AnyHashable) {
 		var params: [AnyHashable: Any] = [:]
 		if let val = self.params {
 			params = val
