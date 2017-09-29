@@ -41,6 +41,11 @@ open class EDButlerRoute {
 
 	open var method : EDButlerRouteMethod
 	open var asJSON : Bool = false
+	open var hash : Data {
+		get {
+			return NSKeyedArchiver.archivedData(withRootObject: request)
+		}
+	}
 
 	fileprivate var hasFiles:Bool  {
 		get {
